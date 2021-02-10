@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -18,10 +19,11 @@ namespace Business.Concrete
             _productDal = productDal;
         }
 
-        public void Add(Product product)
+        public IResult Add(Product product)
         {
             //Business Codes
             _productDal.Add(product);
+            return new Result(true,"Ürün eklendi.");
         }
 
         public List<Product> GetAll()
@@ -50,6 +52,11 @@ namespace Business.Concrete
         public List<ProductDetailDto> GetProductDetails()
         {
             return _productDal.GetProductDetails();
+        }
+
+        IResult IProductService.Add(Product product)
+        {
+            throw new NotImplementedException();
         }
     }
 }
