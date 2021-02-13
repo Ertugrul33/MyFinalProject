@@ -20,6 +20,12 @@ namespace Business.Concrete
             _productDal = productDal;
         }
 
+        //[LogAspect] --> AOP: Bir metodun önünde, bir metodun sonunda, bir metod hata verdiğinde çalışan kod parçacıklarına denir. Yani Business'ın içerisine Business yazılır.
+        //[Validate] --> AOP
+        //[Remove Cache] --> AOP
+        //[Transaction] --> AOP
+        //[Performance] --> AOP
+        //...
         public IResult Add(Product product)
         {
             //Business Codes
@@ -39,7 +45,7 @@ namespace Business.Concrete
             //Yetkisi var mı?
             //...
 
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 1)
             {
                 return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
             }
